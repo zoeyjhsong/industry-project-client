@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Payment = () => {
+const PaymentPage = () => {
   const [formData, setFormData] = useState({
     cardNumber: '',
     expMonth: '',
@@ -73,4 +73,4 @@ const Payment = () => {
   );
 }
 
-export default Payment;
+export default PaymentPage;
