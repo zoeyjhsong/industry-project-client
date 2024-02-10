@@ -1,21 +1,28 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.scss";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Homepage from "./pages/Homepage/Homepage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import BookingPage from "./pages/BookingPage/BookingPage";
+import PaymentPage from "./pages/PaymentPage/PaymentPage";
+import ConfirmationPage from "./pages/ConfirmationPage/ConfirmationPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div cassName="App">
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/confirmation" element={<ConfirmationPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+      <Main />
     </div>
   );
 }
