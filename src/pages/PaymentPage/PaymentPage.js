@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Modal from './Modal';
 
 const PaymentPage = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +11,9 @@ const PaymentPage = () => {
     name: '',
     zip: ''
   });
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -17,18 +22,25 @@ const PaymentPage = () => {
     });
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Payment submitted!');
-    // Reset form after submission
-    setFormData({
-      cardNumber: '',
-      expMonth: '',
-      expYear: '',
-      cvc: '',
-      name: '',
-      zip: ''
-    });
+    // Simulate payment process
+    try {
+      // Simulate successful payment
+      // call your payment API
+      setIsPaymentSuccessful(true);
+      // Open the modal for successful payment
+      setIsModalOpen(true);
+      // Delay redirect to Confirmation Page for 2 seconds
+      setTimeout(() => {
+        // Pass booking details to ConfirmationPage upon successful payment
+        navigate('/confirmation', { state: formData });
+      }, 2000);
+    } catch (error) {
+      console.error('Error processing payment:', error);
+      // Handle payment failure
+      alert('Payment failed. Please try again.');
+    }
   }
 
   const { cardNumber, expMonth, expYear, cvc, name, zip } = formData;
@@ -69,6 +81,11 @@ const PaymentPage = () => {
         <br />
         <button type="submit">Submit Payment</button>
       </form>
+      {/* Modal for payment success */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h3>Payment successful!</h3>
+        <p>Your payment was successfully processed.</p>
+      </Modal>
     </div>
   );
 }

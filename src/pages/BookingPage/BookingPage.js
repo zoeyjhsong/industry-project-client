@@ -19,8 +19,8 @@ const BookingPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Redirect to confirmation page with booking details
-    navigate('/confirmation', { state: formData });
+    // Redirect to Payment Page after form submission
+    navigate('/payment');
   }
 
   const { name, date, time, guests } = formData;
@@ -49,7 +49,7 @@ const BookingPage = () => {
           <input type="number" name="guests" value={guests} onChange={handleChange} />
         </label>
         <br />
-        <button type="submit">Book Table</button>
+        <button type="submit">Proceed to Payment</button>
       </form>
     </div>
   );
