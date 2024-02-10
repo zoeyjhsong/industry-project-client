@@ -12,7 +12,7 @@ function App() {
   return (
     <div cassName="App">
       <BrowserRouter>
-        <Header />
+        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -20,9 +20,8 @@ function App() {
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/confirmation" element={<ConfirmationPage />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
-      <Main />
     </div>
   );
 }
