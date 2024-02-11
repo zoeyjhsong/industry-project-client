@@ -1,0 +1,64 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
+.nav-modal {
+    // transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+
+    &__overlay {
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 1;
+    }
+    &__container {
+        background-color: #e2e2e2;
+        width: 40%;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-end;
+        // height: 50vh;
+        padding: 4rem 1rem;
+        position: relative;
+        text-align: right;
+    }
+
+    &__list-container {
+        list-style: none;
+    }
+    &__list {
+        text-decoration: none;
+        color: black;
+        @include body-large;
+        font-weight: 500;
+        &:hover {
+            text-decoration: underline;
+            color: green;
+        }
+
+        &:focus,
+        &:active {
+            color: green;
+            font-weight: 700;
+        }
+    }
+}
+
+.cross-icon {
+    width: 1rem;
+    height: auto;
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    display: inline-block;
+}

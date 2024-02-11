@@ -12,7 +12,7 @@ function App() {
   return (
     <div cassName="App">
       <BrowserRouter>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage />} />
