@@ -12,8 +12,12 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
 
+    console.log("Login button clicked");
+
     const validationErrors = LoginValidation({ email: username, password });
     setErrors(validationErrors);
+
+    console.log("Validation errors:", validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
       setErrorMsg(""); // Reset error message
@@ -23,7 +27,8 @@ const Login = () => {
         username: username,
         password: password,
       };
-      fetch("http://localhost:3000/login", {
+      console.log("Request Body:", reqBody);
+      fetch("http://localhost:5050/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
