@@ -12,12 +12,12 @@ const NavModal = ({ onClose }) => {
 
           <ul className="nav-modal__list-container">
             <li>
-              <Link className="nav-modal__list" to="/" onClick={onClose}>
+              <Link className="nav-modal__list" to="/home" onClick={onClose}>
                 Home
               </Link>
             </li>
             <li>
-              <Link className="nav-modal__list" to="/login" onClick={onClose}>
+              <Link className="nav-modal__list" to="/" onClick={onClose}>
                 Log In
               </Link>
             </li>

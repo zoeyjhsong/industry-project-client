@@ -1,0 +1,21 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
+.confirmation {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        @include header-style;
+    }
+    &__label {
+        @include body-medium;
+    }
+
+    &__message {
+        @include label-links;
+        margin-top: 1rem;
+    }
+}

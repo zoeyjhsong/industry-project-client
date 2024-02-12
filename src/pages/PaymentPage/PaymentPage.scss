@@ -1,0 +1,41 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
+.payment {
+    margin: 1rem;
+
+    &__header {
+        @include header-style;
+        padding-bottom: 0.5rem;
+    }
+
+    &__form {
+        background-color: #dfbff2;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    &__label {
+        display: flex;
+        flex-direction: column;
+    }
+    &__button {
+        padding: 0.5rem 1.5rem;
+        border-radius: 1.2rem;
+        text-align: center;
+        background-color: #b026ff;
+        color: #fff;
+
+        border: none;
+
+        @include label-links;
+
+        &:hover {
+            background-color: #790fb7;
+        }
+    }
+}

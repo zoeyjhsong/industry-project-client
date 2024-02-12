@@ -1,6 +1,65 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
 .booking {
     &__tables {
         display: flex;
         width: 100%;
+    }
+}
+
+.booking-table {
+    margin: 1rem;
+
+    &__header {
+        @include header-style;
+    }
+
+    &__selected-container {
+        padding: 1rem;
+    }
+    &__subheader {
+        @include subheader-style;
+        margin-bottom: 0.5rem;
+    }
+    &__form {
+        background-color: #dfbff2;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border-radius: 5px;
+    }
+    &__button {
+        padding: 0.5rem 1.5rem;
+        border-radius: 1.2rem;
+        text-align: center;
+        background-color: #b026ff;
+        color: #fff;
+        margin-top: 1.5rem;
+        border: none;
+
+        @include label-links;
+
+        &:hover {
+            background-color: #790fb7;
+        }
+    }
+}
+
+.footer {
+    position: absolute;
+
+    background-color: #b026ff;
+    width: 100%;
+    &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 1rem;
+    }
+    &__icon {
+        width: 2rem;
+        height: 2rem;
     }
 }

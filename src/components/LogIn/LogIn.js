@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 import LoginValidation from "../LoginValidation/LoginValidation";
 
@@ -45,7 +46,7 @@ const Login = () => {
         .then((data) => {
           // Handle successful login
           console.log("Login successful");
-          navigate("/"); // Navigate to home page
+          navigate("/home"); // Navigate to home page
         })
         .catch((error) => {
           // Handle login error
@@ -56,34 +57,46 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          type="email"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        {errors.email && <p>{errors.email}</p>}
+    <div className="login">
+      <h2 className="login__header1">Welcome to</h2>
+      <h1 className="login__header2">Table Flow</h1>
+
+      <section className="login__input-wrapper">
+        <div className="login__input-container">
+          <label htmlFor="username">Email Address</label>
+          <input
+            className="login__input"
+            type="email"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {errors.email && <p>{errors.email}</p>}
+        </div>
+        <div className="login__input-container">
+          <label htmlFor="password">Password</label>
+          <input
+            className="login__input"
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && <p>{errors.password}</p>}
+        </div>
+        <div>
+          <button className="login__button" onClick={handleLogin}>
+            Log In
+          </button>
+        </div>
+        {errorMsg && <p>{errorMsg}</p>}
+      </section>
+
+      <div className="login__signup">
+        <span className="login__signup-text">Don't have an account? </span>
+        <span className="login__signup-link">Sign up</span>
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {errors.password && <p>{errors.password}</p>}
-      </div>
-      <div>
-        <button id="submit" onClick={handleLogin}>
-          Login
-        </button>
-      </div>
-      {errorMsg && <p>{errorMsg}</p>}
-    </>
+    </div>
   );
 };
 

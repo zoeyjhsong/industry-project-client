@@ -1,0 +1,67 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
+.login {
+    margin: 1rem;
+    border: none;
+
+    &__header1 {
+        color: black;
+        @include subheader-style;
+    }
+
+    &__header2 {
+        color: #b026ff;
+        @include header-style;
+        font-weight: 800;
+    }
+    &__input-wrapper {
+        padding-top: 1rem;
+    }
+    &__input-container {
+        display: flex;
+        flex-direction: column;
+        padding-top: 0.5rem;
+    }
+
+    &__input {
+        border-radius: 10px;
+        padding: 0.5rem;
+        border: 1px solid grey;
+    }
+
+    &__button {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 1.5rem;
+        background-color: #b026ff;
+        color: #fff;
+        border-radius: 10px;
+        border: none;
+        @include label-links;
+    }
+
+    &__signup {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 5%;
+        left: 30%;
+    }
+    &__signup-text {
+        padding-right: 0.2rem;
+        @include body-medium;
+    }
+    &__signup-link {
+        color: #b026ff;
+        @include label-links;
+    }
+}
+label {
+    @include body-medium;
+}
+p {
+    color: red;
+}
