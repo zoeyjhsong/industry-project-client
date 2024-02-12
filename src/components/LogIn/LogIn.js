@@ -1,44 +1,60 @@
 import React, { useState } from "react";
-import { useLocalState } from "../../util/useLocalStorage";
 import { useNavigate } from "react-router-dom";
+import LoginValidation from "../LoginValidation/LoginValidation";
 
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errors, setErrors] = useState({}); // State for validation errors
 
-  const [jwt, setJwt] = useLocalState("", "jwt");
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
 
-  function sendLoginRequest() {
-    setErrorMsg("");
-    const reqBody = {
-      username: username,
-      password: password,
-    };
-    fetch("http://localhost:3000/login", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "post",
-      body: JSON.stringify(reqBody),
-    })
-      .then((response) => {
-        if (response.status === 200) return response.text();
-        else if (response.status === 401 || response.status === 403) {
-          setErrorMsg("Invalid username or password");
-        } else {
-          setErrorMsg(
-            "Something went wrong, try again later or reach out to trevor@coderscampus.com"
-          );
-        }
+    console.log("Login button clicked");
+
+    const validationErrors = LoginValidation({ email: username, password });
+    setErrors(validationErrors);
+
+    console.log("Validation errors:", validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      setErrorMsg(""); // Reset error message
+
+      // Proceed with login
+      const reqBody = {
+        username: username,
+        password: password,
+      };
+      console.log("Request Body:", reqBody);
+      fetch("http://localhost:5050/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reqBody),
       })
-      .then((data) => {
-        if (data) {
-          navigate("/");
-        }
-      });
-  }
+        .then((response) => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            throw new Error("Invalid credentials");
+          }
+        })
+        .then((data) => {
+          // Handle successful login
+          console.log("Login successful");
+          navigate("/"); // Navigate to home page
+        })
+        .catch((error) => {
+          // Handle login error
+          console.error("Login error:", error);
+          setErrorMsg(error.message);
+        });
+    }
+  };
+
   return (
     <>
       <div>
@@ -49,6 +65,7 @@ const Login = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        {errors.email && <p>{errors.email}</p>}
       </div>
       <div>
         <label htmlFor="password">Password</label>
@@ -58,15 +75,18 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {errors.password && <p>{errors.password}</p>}
       </div>
       <div>
-        <button id="submit" onClick={() => sendLoginRequest()}>
+        <button id="submit" onClick={handleLogin}>
           Login
         </button>
       </div>
+      {errorMsg && <p>{errorMsg}</p>}
     </>
   );
 };
+
 export default Login;
 
 // import React, { useState, useCallback } from "react";
