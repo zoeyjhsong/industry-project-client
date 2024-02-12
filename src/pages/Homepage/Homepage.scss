@@ -1,0 +1,24 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
+.hero {
+    &__img {
+        background-image: url("https://st3.depositphotos.com/12985790/17261/i/450/depositphotos_172611580-stock-photo-served-table.jpg");
+        background-size: cover;
+        width: 100vw;
+        height: 40vh;
+    }
+
+    &__button {
+        padding: 0.5rem 1.5rem;
+        border-radius: 1.2rem;
+        text-align: center;
+        background-color: #b026ff;
+        color: #fff;
+
+        &:hover {
+            background-color: #790fb7;
+        }
+    }
+}

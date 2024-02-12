@@ -1,0 +1,19 @@
+.header {
+    &__container {
+        padding: 1.5rem 1rem;
+        text-align: center;
+        // @include body-large;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #b026ff;
+    }
+    &__logo {
+        width: 8rem;
+        height: auto;
+    }
+    &__menu-icon {
+        width: 2rem;
+        height: auto;
+    }
+}
