@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./PaymentPage.scss";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import accountIcon from "../../assets/icon/account.png";
 import notificationIcon from "../../assets/icon/notification.png";
@@ -8,6 +8,10 @@ import inboxIcon from "../../assets/icon/mail-inbox-app.png";
 import searchIcon from "../../assets/icon/search-interface-symbol.png";
 
 const PaymentPage = () => {
+  const location = useLocation();
+  const formBookingData = location.state;
+  console.log(formBookingData);
+
   const [formData, setFormData] = useState({
     cardNumber: "",
     expMonth: "",
@@ -19,6 +23,8 @@ const PaymentPage = () => {
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  console.log(formData);
 
   const handleChange = (e) => {
     setFormData({
@@ -39,7 +45,7 @@ const PaymentPage = () => {
       // Delay redirect to Confirmation Page for 2 seconds
       setTimeout(() => {
         // Pass booking details to ConfirmationPage upon successful payment
-        navigate("/confirmation", { state: formData });
+        navigate("/confirmation", { state: formBookingData });
       }, 2000);
     } catch (error) {
       console.error("Error processing payment:", error);
@@ -115,20 +121,20 @@ const PaymentPage = () => {
           <span>Your payment was successfully processed.</span>
         </Modal>
       </div>
-      <div className="home-footer">
-        <div className="home-footer__container">
+      <div className="footer">
+        <div className="footer__container">
           <div>
-            <img className="home-footer__icon" src={searchIcon} />
+            <img className="footer__icon" src={searchIcon} />
           </div>
 
           <div>
-            <img className="home-footer__icon" src={inboxIcon} />
+            <img className="footer__icon" src={inboxIcon} />
           </div>
           <div>
-            <img className="home-footer__icon" src={notificationIcon} />
+            <img className="footer__icon" src={notificationIcon} />
           </div>
           <div>
-            <img className="home-footer__icon" src={accountIcon} />
+            <img className="footer__icon" src={accountIcon} />
           </div>
         </div>
       </div>

@@ -43,10 +43,10 @@ const BookingPage = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log("Form booking submitted:", formData);
     console.log("Selected table:", selectedTable);
     // Navigate to payment page
-    navigate("/payment");
+    navigate("/payment", { state: formData });
   };
 
   const tables = [

@@ -9,6 +9,7 @@ import searchIcon from "../../assets/icon/search-interface-symbol.png";
 const ConfirmationPage = () => {
   const location = useLocation();
   const bookingDetails = location.state;
+  console.log(bookingDetails);
 
   return (
     <>
